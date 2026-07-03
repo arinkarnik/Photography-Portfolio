@@ -1,0 +1,132 @@
+/* Core Reset & Cinematic Dark Mode Theme */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Header & Navigation Links */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    background: linear-gradient(to bottom, rgba(10,10,10,1), rgba(10,10,10,0));
+    z-index: 100;
+}
+.logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+nav a {
+    color: #888;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+nav a:hover, nav a.active {
+    color: #fff;
+}
+
+/* Artistic Staggered Scrolling Gallery */
+.staggered-gallery {
+    max-width: 1400px;
+    margin: 140px auto 80px auto;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 120px; /* Large breathing room between photos */
+}
+
+.gallery-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 0.8s forwards ease-out;
+}
+
+.gallery-item img {
+    max-width: 85%;
+    max-height: 85vh;
+    object-fit: contain;
+    cursor: pointer;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.01);
+}
+
+/* Staggering Positions Dynamically */
+.gallery-item:nth-child(even) {
+    justify-content: flex-start;
+}
+.gallery-item:nth-child(odd) {
+    justify-content: flex-end;
+}
+/* Landscape images can span wider */
+.gallery-item.landscape img {
+    max-width: 100%;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Clean Fullscreen Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 5, 5, 0.98);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+.lightbox img {
+    max-width: 95%;
+    max-height: 95vh;
+    object-fit: contain;
+    animation: zoomIn 0.3s ease;
+}
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+}
+@keyframes zoomIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    header { padding: 20px; flex-direction: column; gap: 15px; }
+    nav a { margin: 0 10px; }
+    .staggered-gallery { gap: 60px; margin-top: 180px; padding: 0 20px; }
+    .gallery-item img { max-width: 100%; }
+}
