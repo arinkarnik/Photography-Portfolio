@@ -1,42 +1,48 @@
-name: Auto Generate Photo Gallery List
+name: Auto Generate Photo Gallery List and Deploy
 
 on:
   push:
+    branches: ["main"]
     paths:
       - 'images/**'
       - 'tabs.json'
+      - 'index.html'
+      - 'styles.css'
+      - 'script.js'
   workflow_dispatch:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Generate Gallery JSON
         run: |
           echo "{" > gallery.json
           first_folder=true
-          
-          # Loop through each subdirectory inside images
           for dir in images/*/; do
             if [ -d "$dir" ]; then
               folder_name=$(basename "$dir")
-              
               if [ "$first_folder" = true ]; then
                 first_folder=false
               else
                 echo "," >> gallery.json
               fi
-              
               echo "  \"$folder_name\": [" >> gallery.json
-              
               first_file=true
-              # Find webp, jpg, png variations
               find "$dir" -type f \( -iname "*.webp" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | sort | while read -r file; do
                 if [ "$first_file" = true ]; then
                   first_file=false
@@ -46,17 +52,29 @@ jobs:
                 clean_path=$(echo "$file" | sed 's/\\/\\\\/g' | sed 's/"/\\"/g')
                 echo "    \"$clean_path\"" >> gallery.json
               done
-              
               echo "  ]" >> gallery.json
             fi
           done
-          
           echo "}" >> gallery.json
 
-      - name: Commit and Push Changes
+      - name: Commit gallery.json if changed
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add gallery.json
-          git diff-index --quiet HEAD || git commit -m "Automated gallery update"
-          git push
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Automated gallery update"
+            git push origin main
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
