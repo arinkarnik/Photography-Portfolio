@@ -18,7 +18,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
@@ -54,6 +54,9 @@ jobs:
             fi
           done
           echo "}" >> gallery.json
+
+      - name: Disable Jekyll Compiler
+        run: touch .nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
