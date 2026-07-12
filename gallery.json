@@ -1,17 +1,16 @@
 {
   "black-and-white": [
-    "images/black-and-white/IMG_0492.jpeg"
-,
-    "images/black-and-white/IMG_9261-3.jpeg"
-,
+    "images/black-and-white/IMG_0492.jpeg",
+    "images/black-and-white/IMG_9261-3.jpeg",
     "images/black-and-white/_MG_4211.jpeg"
-  ]
-,
+  ],
   "cars": [
-    "images/cars/IMG_1916.jpeg"
-,
-    "images/cars/_MG_6887.jpeg"
-,
+    "images/cars/IMG_1916.jpeg",
+    "images/cars/_MG_6887.jpeg",
     "images/cars/_MG_6923.jpeg"
+  ],
+  "sports": [
+    "images/sports/_MG_5405.jpg 26.jpg",
+    "images/sports/_MG_5405.jpg 30.jpg"
   ]
 }
