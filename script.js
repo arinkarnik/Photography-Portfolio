@@ -46,7 +46,7 @@ function switchCategory(folder, element) {
     } else {
         if (heroSection) heroSection.style.display = 'none'; 
     }
-    gallery.style.display = 'flex'; // CHANGED THIS TO FLEX SO THE GAPS WORK AGAIN!
+    gallery.style.display = 'flex'; // Keeps the beautiful gaps between photos
 
     // Fetch the automated global structure compiled by GitHub Actions
     fetch('gallery.json')
@@ -57,6 +57,11 @@ function switchCategory(folder, element) {
             if (images.length === 0) throw new Error("empty");
 
             images.forEach(imgSrc => {
+                // NEW: Skip the cover image so it doesn't duplicate in the gallery!
+                if (folder === 'home' && imgSrc.includes('IMG_3154.jpeg')) {
+                    return; 
+                }
+
                 const itemDiv = document.createElement('div');
                 itemDiv.classList.add('gallery-item');
 
