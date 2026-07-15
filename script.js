@@ -36,13 +36,28 @@ function switchCategory(folder, element) {
     if(element) element.classList.add('active');
 
     const gallery = document.getElementById('gallery');
+    const heroSection = document.querySelector('.hero'); // Grabs your cover page
+
     gallery.innerHTML = ""; // Clear current images
+
+    // NEW LOGIC: Show the Cover Page ONLY on the 'home' tab
+    if (folder === 'home') {
+        if (heroSection) heroSection.style.display = 'flex'; // Show the Arin Karnik title
+        gallery.style.display = 'none';     // Hide the photo grid below it
+        return;                             // Stop here so it doesn't look for photos
+    } else {
+        if (heroSection) heroSection.style.display = 'none'; // Hide the Arin Karnik title
+        gallery.style.display = 'block';    // Show the photo grid
+    }
 
     // Fetch the automated global structure compiled by GitHub Actions
     fetch('gallery.json')
         .then(res => res.json())
         .then(data => {
             const images = data[folder] || [];
+            
+            if (images.length === 0) throw new Error("empty");
+
             images.forEach(imgSrc => {
                 const itemDiv = document.createElement('div');
                 itemDiv.classList.add('gallery-item');
@@ -67,7 +82,7 @@ function switchCategory(folder, element) {
                 gallery.appendChild(itemDiv);
             });
         }).catch(() => {
-            gallery.innerHTML = "<p style='text-align:center;color:#666;'>No photos found in this folder yet. Drop some WebP images into GitHub!</p>";
+            gallery.innerHTML = "<p style='text-align:center;color:#666;'>No photos found in this folder yet.</p>";
         });
 }
 
