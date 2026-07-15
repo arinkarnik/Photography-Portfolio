@@ -1,4 +1,5 @@
 [
   { "name": "Cars", "folder": "cars" },
-  { "name": "Black & White", "folder": "black-and-white" }
+  { "name": "Black & White", "folder": "black-and-white" },
+  { "name": "Sports", "folder": "sports" }
 ]
