@@ -40,15 +40,13 @@ function switchCategory(folder, element) {
 
     gallery.innerHTML = ""; // Clear current images
 
-    // NEW LOGIC: Show the Cover Page ONLY on the 'home' tab
+    // NEW LOGIC: Show Cover Page ONLY on 'home', but show the photo gallery on ALL tabs!
     if (folder === 'home') {
-        if (heroSection) heroSection.style.display = 'flex'; // Show the Arin Karnik title
-        gallery.style.display = 'none';     // Hide the photo grid below it
-        return;                             // Stop here so it doesn't look for photos
+        if (heroSection) heroSection.style.display = 'flex'; 
     } else {
-        if (heroSection) heroSection.style.display = 'none'; // Hide the Arin Karnik title
-        gallery.style.display = 'block';    // Show the photo grid
+        if (heroSection) heroSection.style.display = 'none'; 
     }
+    gallery.style.display = 'flex'; // CHANGED THIS TO FLEX SO THE GAPS WORK AGAIN!
 
     // Fetch the automated global structure compiled by GitHub Actions
     fetch('gallery.json')
