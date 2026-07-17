@@ -1,0 +1,13 @@
+{
+  "shutdown-server-hook": {
+    "enabled": true,
+    "Stop": [
+      {
+        "type": "command",
+        "command": "/Users/arinkarnik/Photography-Portfolio/.agents/shutdown-server.sh",
+        "timeout": 30000,
+        "description": "Shutdown development server when agent session terminates"
+      }
+    ]
+  }
+}
