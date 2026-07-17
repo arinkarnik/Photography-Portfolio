@@ -145,7 +145,7 @@ nav a:hover, nav a.active {
     text-align: center;
 }
 .site-footer p {
-    color: #ff0000; /* Red text for legal notice */
+    color: #444; /* Muted gray text for legal notice to keep it non-distracting */
     font-size: 0.75rem;
     line-height: 1.6;
     font-weight: 300;
@@ -153,7 +153,7 @@ nav a:hover, nav a.active {
     transition: color 0.3s ease;
 }
 .site-footer p:hover {
-    color: #666; /* Slight brighten on hover */
+    color: #888; /* Slight brighten on hover */
 }
 
 /* --- FULLSCREEN HERO SECTION --- */
