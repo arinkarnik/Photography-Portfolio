@@ -36,14 +36,32 @@ function switchCategory(folder, element) {
     if(element) element.classList.add('active');
 
     const gallery = document.getElementById('gallery');
+    const heroSection = document.querySelector('.hero'); // Grabs your cover page
+
     gallery.innerHTML = ""; // Clear current images
+
+    // NEW LOGIC: Show Cover Page ONLY on 'home', but show the photo gallery on ALL tabs!
+    if (folder === 'home') {
+        if (heroSection) heroSection.style.display = 'flex'; 
+    } else {
+        if (heroSection) heroSection.style.display = 'none'; 
+    }
+    gallery.style.display = 'flex'; // Keeps the beautiful gaps between photos
 
     // Fetch the automated global structure compiled by GitHub Actions
     fetch('gallery.json')
         .then(res => res.json())
         .then(data => {
             const images = data[folder] || [];
+            
+            if (images.length === 0) throw new Error("empty");
+
             images.forEach(imgSrc => {
+                // NEW: Skip the cover image so it doesn't duplicate in the gallery!
+                if (folder === 'home' && imgSrc.includes('IMG_3154.jpeg')) {
+                    return; 
+                }
+
                 const itemDiv = document.createElement('div');
                 itemDiv.classList.add('gallery-item');
 
@@ -67,7 +85,7 @@ function switchCategory(folder, element) {
                 gallery.appendChild(itemDiv);
             });
         }).catch(() => {
-            gallery.innerHTML = "<p style='text-align:center;color:#666;'>No photos found in this folder yet. Drop some WebP images into GitHub!</p>";
+            gallery.innerHTML = "<p style='text-align:center;color:#666;'>No photos found in this folder yet.</p>";
         });
 }
 

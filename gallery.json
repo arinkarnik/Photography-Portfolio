@@ -1,16 +1,33 @@
 {
   "black-and-white": [
-    "images/black-and-white/IMG_0492.jpeg",
-    "images/black-and-white/IMG_9261-3.jpeg",
     "images/black-and-white/_MG_4211.jpeg"
-  ],
+,
+    "images/black-and-white/IMG_0492.jpeg"
+,
+    "images/black-and-white/IMG_9261-3.jpeg"
+  ]
+,
   "cars": [
-    "images/cars/IMG_1916.jpeg",
-    "images/cars/_MG_6887.jpeg",
+    "images/cars/_MG_6887.jpeg"
+,
     "images/cars/_MG_6923.jpeg"
-  ],
+,
+    "images/cars/_MG_7130.jpg"
+,
+    "images/cars/IMG_1916.jpeg"
+  ]
+,
+  "home": [
+    "images/home/_MG_4933.jpg"
+,
+    "images/home/IMG_1122.jpg"
+,
+    "images/home/IMG_3154.jpeg"
+  ]
+,
   "sports": [
-    "images/sports/_MG_5405.jpg 26.jpg",
-    "images/sports/_MG_5405.jpg 30.jpg"
+    "images/sports/_MG_6053.jpg 48.jpg"
+,
+    "images/sports/852C454C-D470-47EB-923C-E02207A69542_1_102_o.jpg"
   ]
 }
