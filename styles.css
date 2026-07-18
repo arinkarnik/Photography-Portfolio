@@ -162,7 +162,7 @@ nav a:hover, nav a.active {
     height: 100vh; /* Takes up 100% of the screen height */
     width: 100%;
     /* YOUR SPECIFIC COVER IMAGE IS SET HERE */
-    background-image: url('images/home/IMG_3154.jpeg'); 
+    background-image: url('images/home/IMG_3245.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Creates a high-end parallax scrolling effect */
@@ -200,6 +200,27 @@ nav a:hover, nav a.active {
     letter-spacing: 6px;
     color: #b3b3b3;
     font-weight: 300;
+}
+
+.insta-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.insta-link:hover {
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.insta-link i {
+    margin-right: 8px;
+    font-size: 1.2rem;
 }
 
 /* Mobile adjustments for the Hero text */
