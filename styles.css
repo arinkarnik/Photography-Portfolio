@@ -259,8 +259,9 @@ nav a:hover, nav a.active {
 /* Mobile adjustments for the Hero text */
 @media (max-width: 768px) {
     .hero { 
-        background-position: bottom center; 
-        background-attachment: scroll; 
+        height: 100svh; /* Prevents height jumping when mobile URL bar hides */
+        background-position: bottom center !important; 
+        background-attachment: initial !important; 
     }
     .hero-text h1 { font-size: 3rem; letter-spacing: 8px; }
     .hero-text p { font-size: 0.9rem; letter-spacing: 3px; }
