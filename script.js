@@ -35,6 +35,16 @@ function switchCategory(folder, element) {
     document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
     if(element) element.classList.add('active');
 
+    // Close mobile menu if open
+    const navbar = document.getElementById('navbar');
+    const menuIcon = document.getElementById('menu-icon');
+    if (window.innerWidth <= 768 && navbar.classList.contains('open')) {
+        navbar.classList.remove('open');
+        const icon = menuIcon.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+
     const gallery = document.getElementById('gallery');
     const heroSection = document.querySelector('.hero'); // Grabs your cover page
 
@@ -102,3 +112,25 @@ function closeLightbox() {
     document.getElementById('lightbox').style.display = 'none';
     document.body.style.overflow = 'auto'; // Re-enable scroll
 }
+
+// 4. Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const menuIcon = document.getElementById('menu-icon');
+    const navbar = document.getElementById('navbar');
+
+    if (menuIcon && navbar) {
+        menuIcon.addEventListener('click', () => {
+            navbar.classList.toggle('open');
+            const icon = menuIcon.querySelector('i');
+            if (navbar.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+});
