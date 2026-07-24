@@ -258,6 +258,10 @@ nav a:hover, nav a.active {
 
 /* Mobile adjustments for the Hero text */
 @media (max-width: 768px) {
+    .hero { 
+        background-position: bottom center; 
+        background-attachment: scroll; 
+    }
     .hero-text h1 { font-size: 3rem; letter-spacing: 8px; }
     .hero-text p { font-size: 0.9rem; letter-spacing: 3px; }
 }
