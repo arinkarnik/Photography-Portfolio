@@ -43,6 +43,7 @@ function switchCategory(folder, element) {
         const icon = menuIcon.querySelector('i');
         icon.classList.remove('fa-times');
         icon.classList.add('fa-bars');
+        document.body.style.overflow = 'auto';
     }
 
     const gallery = document.getElementById('gallery');
